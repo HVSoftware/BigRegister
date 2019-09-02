@@ -8,9 +8,9 @@
 
 require_once __DIR__ . '/../../vendor/autoload.php'; // Autoload files using Composer autoload
 
-use BigRegister\BigSearch;
+//use BigRegister\BigSearch;
 
-$id = $argv[1];
-
-$search = new BigSearch();
-$search->searchByRegistration($id);
+//$id = 1; //$argv[1];
+//
+//$search = new BigSearch();
+//$search->searchByRegistration($id);
