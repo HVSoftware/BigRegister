@@ -6,24 +6,18 @@
  * Time: 16:27
  */
 
-namespace BigRegister;
+require __DIR__ . '/../vendor/autoload.php';
 
-require 'BigSearch.php';
+use BigRegister\BigSearch;
 
 $search = new BigSearch();
 
 $criteria = [
-    'name' => 'valk',
-    'dateOfBirth' => '09-02-1980'
-];
-$search->searchByCriteria($criteria);
-
-$criteria = [
     'gender' => 2,
-    'initial' => 'E',
-    'name' => 'valk',
+    'initial' => 'J',
+    'name' => 'Foo',
     'professionalGroup' => 17,
     'specialismType' => 75,
-    'dateOfBirth' => '09-02-1980'
+    'dateOfBirth' => '01-01-1970'
 ];
 $search->searchByCriteria($criteria);

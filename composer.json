@@ -16,7 +16,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "BigRegister\\": "tests/BigRegister"
+            "BigRegister\\": "test/BigRegister"
         }
     },
     "minimum-stability": "dev",

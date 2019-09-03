@@ -8,32 +8,45 @@
 
 namespace BigRegister;
 
-// https://zoeken.bigregister.nl/api/search/criteria?name=valk&dateOfBirth=09-02-1980
-// https://zoeken.bigregister.nl/api/search/criteria?gender=2&initial=E&name=van%20der%20Valk&professionalGroup=17&specialismType=75&dateOfBirth=09-02-1980
-
-// https://zoeken.bigregister.nl/api/search/registration/69064150217
-
 /**
  * Class BigSearch
  * @package BigRegister
  */
 class BigSearch
 {
-    const HTTPS_SEARCH_BIGREGISTER_NL_API = 'https://zoeken.bigregister.nl/api/search/';
+    const HTTPS_SEARCH_BIG_REGISTER_NL_API = 'https://zoeken.bigregister.nl/api/search/';
+
+    private $curl;
 
     /**
+     * BigSearch constructor.
+     */
+    public function __construct()
+    {
+        $this->curl = curl_init();
+    }
+
+    /**
+     * Valid criteria values:
+     * - name
+     * - dateOfBirth (in format DD-MM-YYYY)
+     * - gender (where mail is 1 and female is 2)
+     * - initial
+     * - name
+     * - professionalGroup
+     * - specialismType
+     *
      * @param array $array
      */
     public function searchByCriteria($array = [])
     {
-        $url = self::HTTPS_SEARCH_BIGREGISTER_NL_API . 'criteria?';
+        $url = self::HTTPS_SEARCH_BIG_REGISTER_NL_API . 'criteria?';
+
         foreach ($array as $key => $value) {
             $url .= $key . '=' . $value . '&';
         }
-        $curl = curl_init();
 
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_exec($curl);
+        $this->curlExecute($url);
     }
 
     /**
@@ -41,10 +54,17 @@ class BigSearch
      */
     public function searchByRegistration($id)
     {
-        $url = self::HTTPS_SEARCH_BIGREGISTER_NL_API . 'registration/' . $id;
-        $curl = curl_init();
+        $url = self::HTTPS_SEARCH_BIG_REGISTER_NL_API . 'registration/' . $id;
 
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_exec($curl);
+        $this->curlExecute($url);
+    }
+
+    /**
+     * @param string $url
+     */
+    protected function curlExecute(string $url): void
+    {
+        curl_setopt($this->curl, CURLOPT_URL, $url);
+        curl_exec($this->curl);
     }
 }
