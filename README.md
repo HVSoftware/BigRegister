@@ -19,15 +19,14 @@ Install the library using [composer](https://getcomposer.org):
 
     php composer.phar require hvsoftware/bigregister
 
-
-.... 
-
-For a more comprehensive introduction, see the documentation.
+Try some command within the bin folder:
+  * php bin\Search.php
+  * php bin\SearchByNameAndBirthDate.php
 
 Documentation
 -------------
 
- [Big Register]: https://www.bigregister.nl/
+See [Big Register](https://www.bigregister.nl/) for more information.
 
 Unit tests
 ==========
